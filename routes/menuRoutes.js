@@ -3,6 +3,7 @@ import { MenuItem } from "../models/MenuItem.js";
 
 const router = express.Router();
 
+
 // Post route to add menu
 router.post("/", async (req, res) => {
   try {

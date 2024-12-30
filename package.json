@@ -11,11 +11,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "express": "^4.21.2",
     "loadash": "^1.0.0",
     "lodash": "^4.17.21",
     "mongoose": "^8.9.2",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "password": "^0.1.1"
   }
 }

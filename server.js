@@ -5,10 +5,26 @@ import Task from "./models/Task.js";
 // Import the router files
 import personRoutes from "./routes/personRoutes.js";
 import menuRoutes from "./routes/menuRoutes.js";
+import passport from "./auth.js";
 
 const app = express();
 
 app.use(bodyParser.json());
+
+
+// Middleware Function
+const logRequest = (req, res, next) => {
+  console.log(
+    `[${new Date().toLocaleString()}] Request Made to : ${req.originalUrl}`
+  );
+  next();
+};
+
+app.use(logRequest);
+
+app.use(passport.initialize());
+
+const localAuthMiddleware = passport.authenticate('local', {session: false})
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -45,8 +61,8 @@ app.get("/idli", (req, res) => {
   res.send(customied_idli);
 });
 
-app.use("/person", personRoutes);
-app.use('/menu', menuRoutes);
+app.use("/person",localAuthMiddleware, personRoutes);
+app.use("/menu", menuRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
